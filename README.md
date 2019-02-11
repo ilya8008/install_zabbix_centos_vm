@@ -39,6 +39,6 @@ fqdn для файла hosts:
     zabbix_server_address: zabbix-server.localdomain
     listen_ip_address: "{{ansible_eth0.ipv4.address}}"
   roles:
-    - install_zabbix_agent_vm
+    - install_zabbix_centos_vm
 ```
 
