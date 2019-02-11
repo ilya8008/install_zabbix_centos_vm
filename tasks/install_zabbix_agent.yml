@@ -1,0 +1,26 @@
+---
+- name: Install zabbix-agent
+  yum:
+    name: zabbix-agent
+    state: latest
+
+- name: Install libselinux-python
+  yum:
+    name: libselinux-python
+    state: latest
+  when: ansible_selinux != False
+
+- name: Set zabbix_agent config
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart zabbix-agent
+
+- name: Start and Enable Instaled Services
+  service:
+    enabled: yes
+    state: started
+    name: zabbix-agent

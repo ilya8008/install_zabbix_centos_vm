@@ -1,0 +1,4 @@
+---
+# tasks file for install_zabbix_agent
+- include: add_zabbix_repo4.yml
+- include: install_zabbix_agent.yml

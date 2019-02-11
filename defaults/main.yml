@@ -1,0 +1,4 @@
+---
+# defaults file for install_zabbix_agent
+zabbix_server_address: zabbix-server.localdomain
+listen_ip_address: 127.0.0.1
