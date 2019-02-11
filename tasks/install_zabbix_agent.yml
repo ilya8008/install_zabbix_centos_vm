@@ -8,7 +8,7 @@
   yum:
     name: libselinux-python
     state: latest
-  when: ansible_selinux != False
+  when: ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled'
 
 - name: Set zabbix_agent config
   template:
