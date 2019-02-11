@@ -1,4 +1,4 @@
-erp
+install_zabbix_centos_vm
 ------------
 
 Установка zabbix-agent
