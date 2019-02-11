@@ -23,7 +23,7 @@ roles_path = ./roles
 
 'listen_ip_address: 127.0.0.1'
 
-fqdn для файла hosts:
+Адрес сервера zabbix:
 
 'zabbix_server_address: zabbix-server.localdomain'
 
