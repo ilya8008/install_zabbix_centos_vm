@@ -1,38 +1,44 @@
-Role Name
-=========
-
-A brief description of the role goes here.
-
-Requirements
+erp
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Установка zabbix-agent
 
-Role Variables
+Требования
+------------
+
+Т.к. подключение через ssh осуществляется с использованием ключей,
+нужно прописать параметры соединения в ~/.ssh/config
+
+Параметры в ansible.cfg (remote_user можно указать непосредственно в playbook, из которого вызывается роль)
+
+[defaults]
+remote_user = удаленный пользователь
+roles_path = ./roles
+
+
+Переменные
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Адрес, на котором будет слушать агент:
 
-Dependencies
-------------
+'listen_ip_address: 127.0.0.1'
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+fqdn для файла hosts:
 
-Example Playbook
+'zabbix_server_address: zabbix-server.localdomain'
+
+
+Пример playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```
+- name: Install zabbix agent CentOS
+  hosts: zabbix
+  become: true
+  vars:
+    zabbix_server_address: zabbix-server.localdomain
+    listen_ip_address: "{{ansible_eth0.ipv4.address}}"
+  roles:
+    - install_zabbix_agent_vm
+```
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
